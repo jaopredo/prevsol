@@ -1,5 +1,6 @@
 <template>
     <div>
-       PÁGINA INICIAL 
+       PÁGINA INICIAL
+       <NuxtLink to="/teste">IR PRA TESTE</NuxtLink>
     </div>
 </template>
