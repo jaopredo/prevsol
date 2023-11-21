@@ -6,6 +6,8 @@
 .cache
 dist
 
+tailwind.config.js
+
 .editorconfig
 
 # Node dependencies
