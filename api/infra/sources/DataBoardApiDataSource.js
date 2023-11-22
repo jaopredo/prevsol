@@ -3,8 +3,8 @@ import { mappers } from '../mappers/unity.js'
 
 
 export default class GenericApiDataSource {
-    #httpClient;
-    #resourceUrl;
+    #httpClient
+    #resourceUrl
     #mappers
 
     constructor (httpClient) {
@@ -30,7 +30,6 @@ export default class GenericApiDataSource {
                 this.#resourceUrl,
                 getAllToApi({page, pageSize}, filters)
             )
-
             //--| » if (result!==error){runtodown()}
 
             result.data.forEach(objects => {

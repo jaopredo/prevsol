@@ -7,7 +7,8 @@ applicationCoreInit(provide)
 <template>
     <div class="interface">
         <LayoutHeader/>
-        <main>
+        <LayoutNavbar/>
+        <main style="height: 2200px;">
             <NuxtPage/>
         </main>
         <LayoutFooter/>

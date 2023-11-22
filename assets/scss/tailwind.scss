@@ -22,3 +22,19 @@
 *, h1, h2, h3, h4, h5, h6 {
     font-family: 'Ubuntu';
 }
+
+
+.interface {
+    @apply flex flex-col min-h-screen;
+}
+
+
+/* BOTÕES */
+.button {
+    @apply flex items-center justify-center w-fit gap-1 p-1 rounded-sm transition-all;
+}
+
+.emerald-button {
+    @extend .button;
+    @apply bg-emerald-500 hover:bg-emerald-600 text-white active:bg-emerald-700;
+}
