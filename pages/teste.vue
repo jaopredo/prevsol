@@ -1,6 +1,5 @@
 <template>
     <div>
-        TESTE
-       <NuxtLink to="/">VOLTAR</NuxtLink>
+        <NuxtLink to="/">VOLTAR</NuxtLink>
     </div>
 </template>
