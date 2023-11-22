@@ -11,6 +11,10 @@ export default defineNuxtConfig({
 
     tailwindcss: {
         cssPath: '~/assets/scss/tailwind.scss'
+    },
+
+    alias: {
+        "@/*": "/*"
     }
 })
 // cssPath: '~/assets/css/tailwind.scss',
