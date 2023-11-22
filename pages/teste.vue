@@ -1,6 +1,6 @@
 <template>
     <div>
-        TESTE
-       <NuxtLink to="/">VOLTAR</NuxtLink>
+        <h1 class="bg-algodao">Página teste</h1>
+        <NuxtLink to="/">VOLTAR</NuxtLink>
     </div>
 </template>
