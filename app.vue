@@ -1,16 +1,26 @@
 <script setup>
 import applicationCoreInit from "@/api/bootstrap"
-
+// Inicializando fornecimento da API
 applicationCoreInit(provide)
+
+// Pegando as constantes
+import { headerOptions } from "@/constants/header"
+
+const constants = ref({
+    headerOptions,
+})
+
 </script>
 
 <template>
-    <div class="interface">
-        <LayoutHeader/>
-        <LayoutNavbar/>
-        <main style="height: 2200px;">
-            <NuxtPage/>
-        </main>
-        <LayoutFooter/>
-    </div>
+    <Head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+    </Head>
+
+    <LayoutHeader :header-options="constants.headerOptions"/>
+    <LayoutNavbar/>
+    <main class="-z-10 h-[300vh]">
+        <NuxtPage/>
+    </main>
+    <LayoutFooter/>
 </template>

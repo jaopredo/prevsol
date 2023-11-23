@@ -4,6 +4,10 @@
 export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss', 'nuxt-icon'],
 
+    devServer: {
+        host: '192.168.1.111'
+    },
+
     devtools: { enabled: true },
     app: {
         pageTransition: { name: 'page', mode: 'out-in' }

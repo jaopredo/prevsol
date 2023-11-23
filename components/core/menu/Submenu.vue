@@ -1,5 +1,6 @@
 <script setup>
 
+const route = useRoute()
 const { config } = defineProps([
     'config'
 ])
@@ -7,50 +8,34 @@ const { config } = defineProps([
 </script>
 
 <template>
-    <menu :class="
-        (config?.level>=2?'submenu':'page-menu') +
+    <menu :class="'submenu' +
         (config?.level>2?' translate-x-full':'') +
         (config?.level==2?' top-12':'')
     ">
-        <li v-for="item of config?.items" class="h-full">
-            <NuxtLink v-if="item.path" :to="item.path" :class="config?.level>=2?'submenu-item':'menu-item'">
+        <li v-for="item of config?.items" class="h-full w-full flex">
+            <NuxtLink v-if="item.path" :to="item.path" :class="
+                'submenu-item' +
+                (route.path==item.path?' selected':'')
+            ">
                 <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
                 <p>{{ item.name }}</p>
             </NuxtLink>
 
-            <div v-if="item.submenu" :class="
-                'has-submenu hover:cursor-pointer relative ' +
-                (config?.level>=2?'submenu-item':'menu-item')
-            ">
+            <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative submenu-item">
                 <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
                 <p>{{ item.name }}</p>
-                <CoreMenu v-if="item.submenu" :config="item.submenu" />
+                <CoreMenuSubmenu v-if="item.submenu" :config="item.submenu" />
             </div>
         </li>
     </menu>
 </template>
 
 <style lang="scss">
+@use "@/assets/scss/queries.scss";
 
-.page-menu {
-    @apply bg-emerald-500 h-12 flex items-center justify-center gap-2;
-}
-
-.menu-item {
-    @apply flex
-        items-center
-        justify-center
-        gap-1
-        text-white
-
-        hover:bg-emerald-600
-        h-full
-        w-fit
-        p-2
-        transition-all;
-}
 .submenu {
-    @apply absolute
+    @include queries.pc {
+        @apply absolute
         left-0
         invisible
         bg-emerald-600
@@ -62,16 +47,18 @@ const { config } = defineProps([
         gap-1
         transition-all
         z-10;
+    }
+    @apply hidden;
 }
 .submenu-item {
-    @extend .menu-item;
     @apply hover:bg-slate-200
         font-semibold
         hover:text-emerald-800
         w-full
         justify-start
         text-sm
-        z-20;
+        z-20
+        p-1;
 }
 .has-submenu {
     @apply z-30;
