@@ -70,7 +70,7 @@ function onLeftClick() {
 
 <template>
     <section>
-        <div class="md:h-[60vh] h-[50vw] w-full">
+        <div class="md:h-[60vh] h-[50vw] w-full relative">
             <ul v-if="carrouselConfig.loaded" ref="carrouselRef" class="slides-container">
                 <li v-for="slide of carrouselConfig.slides" class="slide" :style="{
                     backgroundImage: `url(${APICONFIG.url}/files/${slide.image})`,
