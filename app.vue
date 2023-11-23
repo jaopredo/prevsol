@@ -4,11 +4,10 @@ import applicationCoreInit from "@/api/bootstrap"
 applicationCoreInit(provide)
 
 // Pegando as constantes
-import { headerOptions, menuConfig } from "@/constants/header.json"
+import { headerOptions } from "@/constants/header"
 
 const constants = ref({
     headerOptions,
-    menuConfig
 })
 
 </script>
@@ -20,7 +19,7 @@ const constants = ref({
 
     <div class="interface">
         <LayoutHeader :header-options="constants.headerOptions"/>
-        <LayoutNavbar :menu-config="constants.menuConfig" :header-options="constants.headerOptions"/>
+        <LayoutNavbar/>
         <main style="height: 200vh;">
             <NuxtPage/>
         </main>

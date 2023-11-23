@@ -1,10 +1,34 @@
 <script setup>
+import { menuConfig } from "@/constants/header"
 
-const route = useRoute()
-const { config } = defineProps([
-    'config'
+const DataboardService = inject('databoardService')
+
+const config = ref(menuConfig)
+
+async function getPublicationTypes() {
+    const { data: publication_types } = await DataboardService.setRoute('publication_type').getAll(1, 10)
+
+    config.items.push({
+        icon: 'ph:paperclip-duotone',
+        name: 'Publicações Oficiais',
+        submenu: {
+            level: 2,
+            items: publication_types.map(pb_types => ({
+                name: pb_types.name,
+                path: `/publications/${pb_types.id}`
+            }))
+        }
+    })
+}
+
+/* CHAMADAS DA API */
+Promise.all([
+    getPublicationTypes()
 ])
 
+
+/* RESPONSIVIDADE E ESTILIZAÇÃO */
+const route = useRoute()
 
 const isResponsiveMenuOpen = ref(false)
 function handleMenuCloseButtonClick() {
@@ -49,6 +73,9 @@ function handleMenuCloseButtonClick() {
 @use "@/assets/scss/queries.scss";
 
 .hide-menu {
+    @include queries.pc {
+        @apply translate-x-0
+    }
     @apply translate-x-full
 }
 .show-menu {
@@ -78,22 +105,22 @@ function handleMenuCloseButtonClick() {
 
 .menu {
     @include queries.pc {
-        @apply items-center;
+        @apply items-center flex-row h-full;
     }
     @apply flex flex-col items-baseline justify-center gap-2;
 }
 
 .menu-container {
     @include queries.pc {
-        @apply w-full h-full flex items-stretch gap-2 justify-center;
+        @apply bg-transparent w-full h-full items-stretch gap-2 justify-center static p-0;
     }
-    @apply bg-gray-100 flex-col h-screen fixed right-0 top-0 w-60 shadow-md gap-0 p-5 transition-all;
+    @apply bg-gray-100 flex flex-col h-screen fixed right-0 top-0 w-60 shadow-md gap-0 p-5 transition-all z-20;
 }
 
 
 .selected {
     @include queries.pc {
-        @apply bg-emerald-600;
+        @apply bg-emerald-600 font-normal transform-none;
     }
     @apply bg-transparent font-bold scale-110;
 }
@@ -106,7 +133,8 @@ function handleMenuCloseButtonClick() {
         active:bg-emerald-700
         h-full
         w-fit
-        transition-all;
+        transition-all
+        hover:transform-none;
     }
     @apply flex
         items-center
