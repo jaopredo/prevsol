@@ -74,7 +74,12 @@ function onLeftClick() {
             <ul v-if="carrouselConfig.loaded" ref="carrouselRef" class="slides-container">
                 <li v-for="slide of carrouselConfig.slides" class="slide" :style="{
                     backgroundImage: `url(${APICONFIG.url}/files/${slide.image})`,
-                }"></li>
+                }"><NuxtLink :to="slide.url" target="_blank" class="text-container-container">
+                    <div class="text-container">
+                        <h1>{{ slide.name }}</h1>
+                        <p>{{ slide.description }}</p>
+                    </div>
+                </NuxtLink></li>
             </ul>
             <button @click="onLeftClick" type="button" class="change-button left-0 bottom-1/2 translate-y-1/2">
                 <Icon name="iconamoon:arrow-left-2-bold" size="3em" />
@@ -95,6 +100,21 @@ function onLeftClick() {
 
 <style lang="scss" scoped>
 @use "@/assets/scss/queries";
+
+.text-container-container {
+    @apply block bg-black/60 w-full h-full text-white relative;
+}
+.text-container {
+    @apply absolute left-8 bottom-7;
+
+    & h1 {
+        @apply text-5xl font-bold tracking-wider;
+    }
+    & p {
+        @apply text-lg;
+    }
+}
+
 
 .change-button {
     @include queries.pc {
