@@ -8,7 +8,7 @@ const config = ref(menuConfig)
 async function getPublicationTypes() {
     const { data: publication_types } = await DataboardService.setRoute('publication_type').getAll(1, 10)
 
-    config.items.push({
+    config.value.items.push({
         icon: 'ph:paperclip-duotone',
         name: 'Publicações Oficiais',
         submenu: {
@@ -38,38 +38,36 @@ function handleMenuCloseButtonClick() {
 </script>
 
 <template>
-    <div class="w-full h-full relative">
-        <button type="button" class="responsive-button" @click="handleMenuCloseButtonClick">
-            <Icon name="ph:list-fill" size="2em" />
+    <button type="button" class="responsive-button" @click="handleMenuCloseButtonClick">
+        <Icon name="ph:list-fill" size="2em" />
+    </button>
+    <div :class="'menu-container ' + (!isResponsiveMenuOpen?'hide-menu':'show-menu')">
+        <button type="button" class="close-button" @click="handleMenuCloseButtonClick">
+            <Icon name="material-symbols:cancel" size="1.7em" />
         </button>
-        <div :class="'menu-container ' + (!isResponsiveMenuOpen?'hide-menu':'show-menu')">
-            <button type="button" class="close-button" @click="handleMenuCloseButtonClick">
-                <Icon name="material-symbols:cancel" size="1.7em" />
-            </button>
-            <figure class="logo-icon">
-                <img src="/images/prevsol-2-logo.png" alt="Logo prevsol">
-            </figure>
-            <menu class="menu">
-                <li v-for="item of config?.items" class="h-full">
-                    <NuxtLink v-if="item.path" :to="item.path" :class="
-                        'menu-item' +
-                        (route.path==item.path?' selected':'')
-                    ">
-                        <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
-                        <p>{{ item.name }}</p>
-                    </NuxtLink>
-                    <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative menu-item">
-                        <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
-                        <p>{{ item.name }}</p>
-                        <CoreMenuSubmenu v-if="item.submenu" :config="item.submenu" />
-                    </div>
-                </li>
-            </menu>
-        </div>
+        <figure class="logo-icon">
+            <img src="/images/prevsol-2-logo.png" alt="Logo prevsol">
+        </figure>
+        <menu class="menu">
+            <li v-for="item of config?.items" class="h-full">
+                <NuxtLink v-if="item.path" :to="item.path" :class="
+                    'menu-item' +
+                    (route.path==item.path?' selected':'')
+                ">
+                    <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
+                    <p>{{ item.name }}</p>
+                </NuxtLink>
+                <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative menu-item">
+                    <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
+                    <p>{{ item.name }}</p>
+                    <CoreMenuSubmenu v-if="item.submenu" :config="item.submenu" />
+                </div>
+            </li>
+        </menu>
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/scss/queries.scss";
 
 .hide-menu {
@@ -114,7 +112,7 @@ function handleMenuCloseButtonClick() {
     @include queries.pc {
         @apply bg-transparent w-full h-full items-stretch gap-2 justify-center static p-0;
     }
-    @apply bg-gray-100 flex flex-col h-screen fixed right-0 top-0 w-60 shadow-md gap-0 p-5 transition-all z-20;
+    @apply z-10 bg-gray-100 flex flex-col h-screen fixed right-0 top-0 w-60 shadow-md gap-0 p-5 transition-all;
 }
 
 

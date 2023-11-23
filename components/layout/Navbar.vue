@@ -1,5 +1,5 @@
 <template>
-    <nav class="sticky top-0 page-menu">
+    <nav class="sticky top-0 page-menu z-10">
         <CoreMenu/>
     </nav>
 </template>

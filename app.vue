@@ -17,12 +17,10 @@ const constants = ref({
         <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
     </Head>
 
-    <div class="interface">
-        <LayoutHeader :header-options="constants.headerOptions"/>
-        <LayoutNavbar/>
-        <main style="height: 200vh;">
-            <NuxtPage/>
-        </main>
-        <LayoutFooter/>
-    </div>
+    <LayoutHeader :header-options="constants.headerOptions"/>
+    <LayoutNavbar/>
+    <main class="-z-10 h-[300vh]">
+        <NuxtPage/>
+    </main>
+    <LayoutFooter/>
 </template>
