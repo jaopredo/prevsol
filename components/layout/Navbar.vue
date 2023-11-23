@@ -2,38 +2,17 @@
 
 const DataboardService = inject('databoardService')
 
-const menuConfig = ref({
-    level: 1,
-    items: [
-        {
-            icon: 'ph:house-light',
-            name: 'Início',
-            path: '/'
-        },
-        {
-            icon: 'ic:outline-watch-later',
-            name: 'Histório',
-            path: '/history'
-        },
-        {
-            icon: 'ph:bell-simple-ringing-light',
-            name: 'Serviços Online',
-            path: '/services'
-        },
-        {
-            icon: 'ph:phone-disconnect',
-            name: 'Ouvidoria',
-            path: '/feedback'
-        },
-    ]
-})
+const { menuConfig } = defineProps([
+    'menuConfig',
+    'headerOptions'
+])
 
 
 async function getPublicationTypes() {
     const { data: publication_types } = await DataboardService.setRoute('publication_type').getAll(1, 10)
 
-    menuConfig.value.items.push({
-        icon: 'ph:paperclip-light',
+    menuConfig.items.push({
+        icon: 'ph:paperclip-duotone',
         name: 'Publicações Oficiais',
         submenu: {
             level: 2,
@@ -54,7 +33,16 @@ Promise.all([
 </script>
 
 <template>
-    <nav class="sticky top-0">
+    <nav class="sticky top-0 page-menu">
         <CoreMenu :config="menuConfig"/>
     </nav>
 </template>
+
+
+<style lang="scss">
+@use "@/assets/scss/queries.scss";
+
+.page-menu {
+    @apply bg-emerald-500 h-12 flex items-center justify-center w-full;
+}
+</style>
