@@ -108,10 +108,10 @@ function onLeftClick() {
     @apply absolute left-8 bottom-7;
 
     & h1 {
-        @apply text-5xl font-bold tracking-wider;
+        @apply md:text-5xl text-[5vw] font-bold tracking-wider;
     }
     & p {
-        @apply text-lg;
+        @apply md:text-lg text-[3.4vw];
     }
 }
 
