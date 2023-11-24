@@ -1,5 +1,5 @@
 <script setup>
-import APICONFIG from '~/config/api';
+import APICONFIG from '~/config/api'
 
 const DataboardService = inject('databoardService')
 
@@ -18,7 +18,7 @@ const carrouselRef = ref(null)
 
 /* CHAMADA DA API PARA OS SLIDES */
 async function getSlides() {
-    const { data } = await DataboardService.setRoute('slide').getAll(1, 10)
+    const { data } = await DataboardService.getAll('slide', 1, 10)
 
     carrouselConfig.value = {
         loaded: true,
@@ -81,11 +81,11 @@ function onLeftClick() {
                     </div>
                 </NuxtLink></li>
             </ul>
-            <button @click="onLeftClick" type="button" class="change-button left-0 bottom-1/2 translate-y-1/2">
-                <Icon name="iconamoon:arrow-left-2-bold" size="3em" />
+            <button @click="onLeftClick" type="button" class="change-button md:left-4 left-0 bottom-1/2 translate-y-1/2">
+                <Icon name="iconamoon:arrow-left-2-bold" size="2em" />
             </button>
-            <button @click="onRightClick" type="button" class="change-button right-0 top-1/2 -translate-y-1/2">
-                <Icon name="iconamoon:arrow-right-2-bold" size="3em" />
+            <button @click="onRightClick" type="button" class="change-button md:right-4 right-0 top-1/2 -translate-y-1/2">
+                <Icon name="iconamoon:arrow-right-2-bold" size="2em" />
             </button>
         </div>
         <ul class="flex items-center justify-center gap-3 mt-3">
