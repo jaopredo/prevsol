@@ -1,33 +1,24 @@
 <script setup>
 import { menuConfig } from "~/constants/header"
 
-const DataboardService = inject('databoardService')
+const pub_types = inject('publication_type')
 
 const config = ref(menuConfig)
 
-async function getPublicationTypes() {
-    const { data: publication_types } = await DataboardService.getAll('publication_type', 1, 10)
-
-    config.value.items.forEach((item, index) => {
-        if (item.icon == 'ph:paperclip-duotone') {
-            config.value.items[index] = {
-                ...config.value.items[index],
-                submenu: {
-                    level: 2,
-                    items: publication_types.map(pb_types => ({
-                        name: pb_types.name,
-                        path: `/publications/${pb_types.id}`
-                    }))
-                }
+config.value.items.forEach((item, index) => {
+    if (item.icon == 'ph:paperclip-duotone') {
+        menuConfig.items[index] = {
+            ...menuConfig.items[index],
+            submenu: {
+                level: 2,
+                items: pub_types.value?.map(pb_types => ({
+                    name: pb_types.name,
+                    path: `/publications/${pb_types.id}`
+                }))
             }
         }
-    })
-}
-
-/* CHAMADAS DA API */
-Promise.all([
-    getPublicationTypes()
-])
+    }
+})
 
 
 /* RESPONSIVIDADE E ESTILIZAÇÃO */

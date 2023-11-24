@@ -1,13 +1,6 @@
 <script setup>
 
-const DataboardService = inject('databoardService')
-
-const calendars = ref([])
-
-async function getCalendars() {
-    const { data } = await DataboardService.getAll('calendar', 1, 10)
-    calendars.value = data
-}
+const calendars = ref(inject('calendar'))
 
 function getMonthName(date) {
     const month = (new Date(date)).getMonth()
@@ -19,8 +12,6 @@ function getMonthName(date) {
 
     return months[month]
 }
-
-Promise.all([getCalendars()])
 
 </script>
 
