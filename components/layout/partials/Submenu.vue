@@ -30,7 +30,7 @@ const { config } = defineProps([
     </menu>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/scss/queries.scss";
 
 .submenu {
@@ -38,7 +38,7 @@ const { config } = defineProps([
         @apply absolute
         left-0
         invisible
-        bg-emerald-600
+        bg-emerald-800
         w-full
         opacity-0
         flex
@@ -53,7 +53,7 @@ const { config } = defineProps([
 .submenu-item {
     @apply hover:bg-slate-200
         font-semibold
-        hover:text-emerald-800
+        hover:text-emerald-900
         w-full
         justify-start
         text-sm

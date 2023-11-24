@@ -1,10 +1,10 @@
 <script setup>
-import applicationCoreInit from "@/api/bootstrap"
+import applicationCoreInit from "~/api/bootstrap"
 // Inicializando fornecimento da API
 applicationCoreInit(provide)
 
 // Pegando as constantes
-import { headerOptions } from "@/constants/header"
+import { headerOptions } from "~/constants/header"
 
 const constants = ref({
     headerOptions,
@@ -17,10 +17,10 @@ const constants = ref({
         <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
     </Head>
 
-    <LayoutHeader :header-options="constants.headerOptions"/>
-    <LayoutNavbar/>
-    <main class="-z-10 h-[300vh]">
+    <LayoutStructureHeader :header-options="constants.headerOptions"/>
+    <LayoutStructureNavbar/>
+    <main>
         <NuxtPage/>
     </main>
-    <LayoutFooter/>
+    <LayoutStructureFooter/>
 </template>

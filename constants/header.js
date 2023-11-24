@@ -38,6 +38,10 @@ export const menuConfig = {
             "icon": "ph:phone-fill",
             "name": "Ouvidoria",
             "path": "/feedback"
+        },
+        {
+            "icon": 'ph:paperclip-duotone',
+            "name": 'Publicações Oficiais',
         }
     ]
 }

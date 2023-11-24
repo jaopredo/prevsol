@@ -1,22 +1,25 @@
 <script setup>
-import { menuConfig } from "@/constants/header"
+import { menuConfig } from "~/constants/header"
 
 const DataboardService = inject('databoardService')
 
 const config = ref(menuConfig)
 
 async function getPublicationTypes() {
-    const { data: publication_types } = await DataboardService.setRoute('publication_type').getAll(1, 10)
+    const { data: publication_types } = await DataboardService.getAll('publication_type', 1, 10)
 
-    config.value.items.push({
-        icon: 'ph:paperclip-duotone',
-        name: 'Publicações Oficiais',
-        submenu: {
-            level: 2,
-            items: publication_types.map(pb_types => ({
-                name: pb_types.name,
-                path: `/publications/${pb_types.id}`
-            }))
+    config.value.items.forEach((item, index) => {
+        if (item.icon == 'ph:paperclip-duotone') {
+            config.value.items[index] = {
+                ...config.value.items[index],
+                submenu: {
+                    level: 2,
+                    items: publication_types.map(pb_types => ({
+                        name: pb_types.name,
+                        path: `/publications/${pb_types.id}`
+                    }))
+                }
+            }
         }
     })
 }
@@ -60,7 +63,7 @@ function handleMenuCloseButtonClick() {
                 <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative menu-item">
                     <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
                     <p>{{ item.name }}</p>
-                    <CoreMenuSubmenu v-if="item.submenu" :config="item.submenu" />
+                    <LayoutPartialsSubmenu v-if="item.submenu" :config="item.submenu" />
                 </div>
             </li>
         </menu>
@@ -118,7 +121,7 @@ function handleMenuCloseButtonClick() {
 
 .selected {
     @include queries.pc {
-        @apply bg-emerald-600 font-normal transform-none;
+        @apply bg-emerald-900 font-normal transform-none;
     }
     @apply bg-transparent font-bold scale-110;
 }
@@ -127,8 +130,8 @@ function handleMenuCloseButtonClick() {
         @apply 
         text-white
         gap-1
-        hover:bg-emerald-600
-        active:bg-emerald-700
+        hover:bg-emerald-800
+        active:bg-emerald-900
         h-full
         w-fit
         transition-all

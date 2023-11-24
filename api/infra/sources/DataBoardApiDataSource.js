@@ -4,7 +4,6 @@ import { mappers } from '../mappers/unity.js'
 
 export default class GenericApiDataSource {
     #httpClient
-    #resourceUrl
     #mappers
 
     constructor (httpClient) {
@@ -12,28 +11,18 @@ export default class GenericApiDataSource {
         this.#mappers=mappers()
 	}
 
-    // ---| » (SetROUTE)-responsavel por definir o valor da url (resourceUrl)
-    setRoute(route){
-        this.#resourceUrl=route
-    }
-    // ---| » |==============================================================............  
-
-
-
-
-
     // ---| » (GetALL)-responsavel por pegar todos os valores registrados na db da api
-    async getAll(page, pageSize, filters){
+    async getAll(route, page, pageSize, filters){
         let result,data=[];
         try{
             result=await this.#httpClient.get(
-                this.#resourceUrl,
+                route,
                 getAllToApi({page, pageSize}, filters)
             )
             //--| » if (result!==error){runtodown()}
 
             result.data.forEach(objects => {
-                data.push(this.#mappers.especificMapper(this.#resourceUrl).apiToApplication(objects));
+                data.push(this.#mappers.especificMapper(route).apiToApplication(objects));
             });
             
             return {data, metadata: result.meta};
@@ -44,13 +33,13 @@ export default class GenericApiDataSource {
     }
 
     // ---| » (Get)-responsavel por pegar valores em especifico ou todos na db da api
-    async get(id) {
+    async get(route, id) {
         let result;
         try{
-            result=await this.#httpClient.get(`${this.#resourceUrl}/${id}`)
+            result=await this.#httpClient.get(`${route}/${id}`)
             
             //--| » if (result!==error){runtodown()}        
-            return this.#mappers.especificMapper(this.#resourceUrl).apiToApplication(result.data)
+            return this.#mappers.especificMapper(route).apiToApplication(result.data)
         }catch(err){
             return Promise.reject(err);
         }

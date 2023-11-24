@@ -34,11 +34,16 @@ body {
 
 
 /* BOTÕES */
+button {
+    @apply md:active:scale-100 md:transition-none transition-all active:scale-90
+}
+
 .button {
+    @extend button;
     @apply flex items-center justify-center w-fit gap-1 p-1 rounded-sm transition-all;
 }
 
 .emerald-button {
     @extend .button;
-    @apply bg-emerald-500 hover:bg-emerald-600 text-white active:bg-emerald-700;
+    @apply bg-emerald-700 hover:bg-emerald-800 text-white active:bg-emerald-900;
 }

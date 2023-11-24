@@ -1,5 +1,6 @@
 <template>
     <div>
-        <CoreSectionsSlide/>
+        <LayoutPartialsSlide/>
+        <LayoutPartialsCalendar/>
     </div>
 </template>
