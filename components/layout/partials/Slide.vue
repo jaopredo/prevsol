@@ -1,36 +1,19 @@
 <script setup>
 import APICONFIG from '~/config/api'
 
-const DataboardService = inject('databoardService')
 
 /* REFS QUE VOU UTILIZAR */
+const slides = inject('slide')
 const carrouselConfig = ref({
-    loaded: false,
+    loaded: true,
     current: {
         index: 0,
-        slide: null
+        slide: slides.value[0]
     },
-    length: null,
-    slides: []
+    length: slides.value.length,
+    slides: slides.value
 })
 const carrouselRef = ref(null)
-
-
-/* CHAMADA DA API PARA OS SLIDES */
-async function getSlides() {
-    const { data } = await DataboardService.getAll('slide', 1, 10)
-
-    carrouselConfig.value = {
-        loaded: true,
-        current: {
-            index: 0,
-            slide: data[0]
-        },
-        length: data.length,
-        slides: data
-    }
-}
-Promise.all([ getSlides() ])
 
 
 /* FUNÇAO QUE AUMENTA O VALOR DO INDEX SEMPRE */
@@ -54,6 +37,7 @@ watch(() => carrouselConfig.value.current.index, () => {
 /* SE EU CLICAR NO BOTÃO DIREITO E ESQUERDO */
 function onRightClick() {
     const { current: { index }, length } = carrouselConfig.value
+    console.log(carrouselConfig.value)
     if (index < length-1) {
         carrouselConfig.value.current.index += 1
     }

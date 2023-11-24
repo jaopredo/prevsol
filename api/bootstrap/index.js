@@ -6,7 +6,7 @@ import DataBoardApiDataSource from "@/api/infra/sources/DataBoardApiDataSource";
 
 import DataBoardService from "@/api/services/DataBoardService";
 
-const applicationCoreInit = (provide) => {
+const applicationCoreInit = () => {
     const httpClient = new AxiosAdapter(APICONFIG.url);
 
     // Datasources
@@ -15,8 +15,7 @@ const applicationCoreInit = (provide) => {
     // Services
     const databoardService = new DataBoardService(databoardApiDataSource);
 
-    provide('httpClient', httpClient);
-    provide('databoardService', databoardService);
+    return databoardService
 }
 
 export default applicationCoreInit
