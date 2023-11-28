@@ -2,9 +2,10 @@
 import applicationCoreInit from "~/api/bootstrap"
 // Inicializando fornecimento da API
 const DataboardService = applicationCoreInit()
+provide('DataboardService', DataboardService)
 
 // Pegando as constantes
-import { headerOptions } from "~/constants/header"
+import { headerOptions } from "~/config/header"
 const constants = ref({
     headerOptions,
 })
@@ -29,7 +30,7 @@ await Promise.all([
     makeApiCall('calendar', DataboardService, data => { calendars.value = data }),
     makeApiCall('publication_type', DataboardService, data => { pub_types.value = data }),
     makeApiCall('server', DataboardService, data => { servers.value = data }),
-    makeApiCall('history', DataboardService, data => { histories.value = data })
+    makeApiCall('history', DataboardService, data => { histories.value = data }),
 ])
 
 </script>
@@ -46,4 +47,4 @@ await Promise.all([
         <NuxtPage/>
     </main>
     <LayoutStructureFooter/>
-</template>
+</template>~/config/header

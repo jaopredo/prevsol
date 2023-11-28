@@ -7,8 +7,8 @@ export default class GenericService {
         this.#apiDataSource = apiDataSource;
 	}
 
-	async getAll(route, page, pageSize, filters = {}) {
-		return await this.#apiDataSource.getAll(route, page, pageSize, filters)
+	async getAll(params) {
+		return await this.#apiDataSource.getAll(params)
 		.catch((e) => {
 			return Promise.reject(e);
 		})

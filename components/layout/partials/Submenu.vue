@@ -12,7 +12,7 @@ const { config } = defineProps([
         (config?.level>2?' translate-x-full':'') +
         (config?.level==2?' top-12':'')
     ">
-        <li v-for="item of config?.items" class="h-full w-full flex">
+        <li v-for="item of config?.items" class="h-full flex w-full">
             <NuxtLink v-if="item.path" :to="item.path" :class="
                 'submenu-item' +
                 (route.path==item.path?' selected':'')
@@ -24,7 +24,7 @@ const { config } = defineProps([
             <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative submenu-item">
                 <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
                 <p>{{ item.name }}</p>
-                <CoreMenuSubmenu v-if="item.submenu" :config="item.submenu" />
+                <LayoutPartialsSubmenu v-if="item.submenu" :config="item.submenu" />
             </div>
         </li>
     </menu>
@@ -39,14 +39,18 @@ const { config } = defineProps([
         left-0
         invisible
         bg-emerald-800
-        w-full
         opacity-0
         flex
         flex-col
         items-stretch
+
+        min-w-fit
         gap-1
         transition-all
-        z-10;
+        z-10
+        
+        hover:visible
+        hover:opacity-100;
     }
     @apply hidden;
 }
@@ -54,15 +58,17 @@ const { config } = defineProps([
     @apply hover:bg-slate-200
         font-semibold
         hover:text-emerald-900
-        w-full
+        text-white
         justify-start
+
+        w-full
         text-sm
         z-20
         p-1;
 }
 .has-submenu {
     @apply z-30;
-    &:hover > .submenu {
+    &:hover + .submenu {
         @apply opacity-100 visible;
     }
 }

@@ -49,6 +49,7 @@ export const menuConfig = {
         {
             "icon": 'ph:paperclip-duotone',
             "name": 'Publicações Oficiais',
+            "path": "/pub_types",
 
             id: 'publications'
         }

@@ -29,7 +29,7 @@ function getMonthName(date) {
                         text-white text-lg font-bold
                         pl-3
                     ">
-                        {{ getMonthName(calendar.date) }} de 2023
+                        {{ getMonthName(calendar.date) }} de {{ (new Date(calendar.date)).getFullYear() }}
                     </header>
                     <h1 class="p-2 font-bold">{{ calendar.name }}</h1>
                     <CoreCalendar :date="calendar.date" />

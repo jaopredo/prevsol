@@ -32,6 +32,10 @@ body {
     min-height: 100vh
 }
 
+/* INPUT */
+.input {
+    @apply p-2 border focus:ring-emerald-500 focus:ring-2 ring-offset-1 border-gray-400 rounded-md focus:border-emerald-500 transition-all;
+}
 
 /* BOTÕES */
 button {
