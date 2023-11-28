@@ -15,15 +15,21 @@ import { makeApiCall } from '~/utils/api'
 const pub_types = ref([])
 const calendars = ref([])
 const slides = ref([])
+const servers = ref([])
+const histories = ref([])
 
 provide('slide', slides)
 provide('calendar', calendars)
 provide('publication_type', pub_types)
+provide('server', servers)
+provide('history', histories)
 
 await Promise.all([
     makeApiCall('slide', DataboardService, data => { slides.value = data }),
     makeApiCall('calendar', DataboardService, data => { calendars.value = data }),
     makeApiCall('publication_type', DataboardService, data => { pub_types.value = data }),
+    makeApiCall('server', DataboardService, data => { servers.value = data }),
+    makeApiCall('history', DataboardService, data => { histories.value = data })
 ])
 
 </script>

@@ -22,26 +22,35 @@ export const menuConfig = {
         {
             "icon": "ph:house-fill",
             "name": "Início",
-            "path": "/"
+            "path": "/",
+
+            id: 'home'
         },
         {
             "icon": "ic:baseline-watch-later",
             "name": "Histório",
-            "path": "/history"
+            "path": "/history",
+
+            id: 'history'
         },
         {
             "icon": "ph:bell-simple-fill",
             "name": "Serviços Online",
-            "path": "/services"
+
+            id: 'services'
         },
         {
             "icon": "ph:phone-fill",
             "name": "Ouvidoria",
-            "path": "/feedback"
+            "path": "/feedback",
+
+            id: 'feedback'
         },
         {
             "icon": 'ph:paperclip-duotone',
             "name": 'Publicações Oficiais',
+
+            id: 'publications'
         }
     ]
 }
