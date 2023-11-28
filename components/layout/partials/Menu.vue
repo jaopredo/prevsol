@@ -2,23 +2,33 @@
 import { menuConfig } from "~/constants/header"
 
 const pub_types = inject('publication_type')
+const servers = inject('server')
 
 const config = ref(menuConfig)
 
-config.value.items.forEach((item, index) => {
-    if (item.icon == 'ph:paperclip-duotone') {
-        menuConfig.items[index] = {
-            ...menuConfig.items[index],
-            submenu: {
-                level: 2,
-                items: pub_types.value?.map(pb_types => ({
-                    name: pb_types.name,
-                    path: `/publications/${pb_types.id}`
-                }))
-            }
+config.value.items = config.value.items.map((item, index) => {
+    if (item.id == 'publications') {
+        item.submenu = {
+            level: 2,
+            items: pub_types.value?.map(pb_types => ({
+                name: pb_types.name,
+                path: `/publications/${pb_types.id}`
+            }))
         }
     }
+    if (item.id == 'services') {
+        item.submenu = {
+            level: 2,
+            items: servers.value?.map(server => ({
+                name: server.name,
+                path: server.url
+            }))
+        }
+    }
+    return item
 })
+
+console.log(config.value)
 
 
 /* RESPONSIVIDADE E ESTILIZAÇÃO */
