@@ -58,7 +58,7 @@ watch(
 </script>
 
 <template>
-    <div class="flex flex-col min-h-[300px] md:h-fit items-stretch rounded-lg w-full p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
+    <div class="flex flex-col min-h-[300px] md:h-fit items-stretch rounded-lg w-full md:w-[80%] p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
         <div v-if="data.data.length>0 || data.loading" class="flex items-center justify-center gap-3 w-full">
             <input v-model="search" type="search" id="search-publication" class="peer input flex-grow" placeholder="Para procurar, digite aqui">
             <Icon name="ic:baseline-search" size="1.5em" class="peer-focus:text-emerald-700" />
@@ -68,16 +68,16 @@ watch(
         </div>
 
         <CorePagination v-if="data.data.length>0" :meta="data.metadata" :actualPage="actualPage" :dataRef="data"/>
-        <div class="flex-grow h-full w-full flex items-center justify-center" v-if="data.loading">
-            <Icon name="mdi:loading" size="2em" class="animate-spin text-emerald-600" />
-        </div>
         <ul v-if="data.data.length > 0" class="w-full h-full flex flex-col items-stretch">
-            <li v-for="entry of data.data" class="w-full border-b active:border-emerald-500 active:text-emerald-500 md:hover:border-emerald-400 md:hover:text-emerald-500">
+            <li v-for="entry of data.data" class="w-full border-b active:border-emerald-500 active:text-emerald-500 md:hover:border-emerald-400 md:hover:text-emerald-500 odd:bg-slate-">
                 <NuxtLink class="w-full h-full p-3 flex items-center justify-between" :to="`${to}/${entry.id}`">
                     {{ entry[name] }}
                     <Icon name="ic:sharp-keyboard-arrow-right" size="1.5em"/>
                 </NuxtLink>
             </li>
         </ul>
-    </div>
+        <div class="flex-grow h-full w-full flex items-center justify-center" v-if="data.loading">
+            <Icon name="mdi:loading" size="2em" class="animate-spin text-emerald-600" />
+        </div>
+</div>
 </template>

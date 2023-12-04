@@ -51,3 +51,24 @@ button {
     @extend .button;
     @apply bg-emerald-700 hover:bg-emerald-800 text-white active:bg-emerald-900;
 }
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-700;
+}

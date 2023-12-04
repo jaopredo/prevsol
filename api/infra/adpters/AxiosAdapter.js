@@ -1,4 +1,5 @@
 import axios from "axios"
+// import { useLazyFetch } from 'nuxt'
 
 export default class AxiosAdapter {
 	#baseUrl;

@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss', 'nuxt-icon'],
 
     devServer: {
-        host: '192.168.1.111'
+        host: '192.168.1.200'
     },
 
     devtools: { enabled: true },
