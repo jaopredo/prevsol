@@ -17,4 +17,10 @@ export default class GenericService {
     async get(route, id) {
 		return await this.#apiDataSource.get(route, id);
 	}
+
+	async post(route, data) {
+		return await this.#apiDataSource.post(route, data).catch((e) => {
+			return Promise.reject(e);
+		})
+	}
 }
