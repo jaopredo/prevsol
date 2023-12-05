@@ -31,7 +31,7 @@ function onSubmit(e) {
 
 <template>
     <section class="w-full flex flex-col items-center justify-center gap-2 p-5">
-        <h1 class="text-emerald-600 font-bold text-4xl">Ára de Manifestação</h1>
+        <h1 class="text-emerald-600 font-bold text-4xl text-center">Ára de Manifestação</h1>
         <h2 class="text-lg italic break-words text-center">
             Envie suas insatisfações pelo formulário abaixo ou entre em contato com esse telefone: <strong>(88)9.3300-1579</strong>
         </h2>
@@ -68,10 +68,6 @@ function onSubmit(e) {
     label {
         @apply font-medium;
     }
-}
-
-.input {
-    @apply p-2 border focus:ring-emerald-500 focus:ring-2 ring-offset-1 border-gray-400 rounded-md focus:border-emerald-500 transition-all;
 }
 
 </style>

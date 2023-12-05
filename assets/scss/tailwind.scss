@@ -32,6 +32,10 @@ body {
     min-height: 100vh
 }
 
+/* INPUT */
+.input {
+    @apply p-2 border focus:ring-emerald-500 focus:ring-2 ring-offset-1 border-gray-400 rounded-md focus:border-emerald-500 transition-all;
+}
 
 /* BOTÕES */
 button {
@@ -46,4 +50,25 @@ button {
 .emerald-button {
     @extend .button;
     @apply bg-emerald-700 hover:bg-emerald-800 text-white active:bg-emerald-900;
+}
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-700;
 }

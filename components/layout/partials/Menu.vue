@@ -1,5 +1,5 @@
 <script setup>
-import { menuConfig } from "~/constants/header"
+import { menuConfig } from "~/config/header"
 
 const pub_types = inject('publication_type')
 const servers = inject('server')
@@ -12,9 +12,10 @@ config.value.items = config.value.items.map((item, index) => {
             level: 2,
             items: pub_types.value?.map(pb_types => ({
                 name: pb_types.name,
-                path: `/publications/${pb_types.id}`
+                path: `/pub_types/${pb_types.id}`
             }))
         }
+        item.submenu.items.push({ name: 'Mais categorias...', path: '/pub_types' })
     }
     if (item.id == 'services') {
         item.submenu = {
@@ -24,11 +25,10 @@ config.value.items = config.value.items.map((item, index) => {
                 path: server.url
             }))
         }
+        item.submenu.items.push({ name: 'Mais serviços...', path: '/services' })
     }
     return item
 })
-
-console.log(config.value)
 
 
 /* RESPONSIVIDADE E ESTILIZAÇÃO */
@@ -53,19 +53,16 @@ function handleMenuCloseButtonClick() {
             <img src="/images/prevsol-2-logo.png" alt="Logo prevsol">
         </figure>
         <menu class="menu">
-            <li v-for="item of config?.items" class="h-full">
-                <NuxtLink v-if="item.path" :to="item.path" :class="
-                    'menu-item' +
-                    (route.path==item.path?' selected':'')
+            <li v-for="item of config?.items" class="h-full relative">
+                <NuxtLink :to="item.path || '#'" :class="
+                    'menu-item relative' +
+                    (route.path==item.path?' selected':'') +
+                    (item.submenu?' has-submenu':'')
                 ">
                     <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
                     <p>{{ item.name }}</p>
                 </NuxtLink>
-                <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative menu-item">
-                    <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
-                    <p>{{ item.name }}</p>
-                    <LayoutPartialsSubmenu v-if="item.submenu" :config="item.submenu" />
-                </div>
+                <LayoutPartialsSubmenu v-if="item.submenu" :config="item.submenu" />
             </li>
         </menu>
     </div>
@@ -158,3 +155,4 @@ function handleMenuCloseButtonClick() {
 }
 
 </style>
+~/config/header

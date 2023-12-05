@@ -5,7 +5,6 @@ import APICONFIG from '~/config/api'
 /* REFS QUE VOU UTILIZAR */
 const slides = inject('slide')
 const carrouselConfig = ref({
-    loaded: true,
     current: {
         index: 0,
         slide: slides.value[0]
@@ -37,7 +36,6 @@ watch(() => carrouselConfig.value.current.index, () => {
 /* SE EU CLICAR NO BOTÃO DIREITO E ESQUERDO */
 function onRightClick() {
     const { current: { index }, length } = carrouselConfig.value
-    console.log(carrouselConfig.value)
     if (index < length-1) {
         carrouselConfig.value.current.index += 1
     }
@@ -55,7 +53,7 @@ function onLeftClick() {
 <template>
     <section>
         <div class="md:h-[60vh] h-[50vw] w-full relative">
-            <ul v-if="carrouselConfig.loaded" ref="carrouselRef" class="slides-container">
+            <ul ref="carrouselRef" class="slides-container">
                 <li v-for="slide of carrouselConfig.slides" class="slide" :style="{
                     backgroundImage: `url(${APICONFIG.url}/files/${slide.image})`,
                 }"><NuxtLink :to="slide.url" target="_blank" class="text-container-container">
