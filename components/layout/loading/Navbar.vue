@@ -1,6 +1,6 @@
 <template>
-	<nav class="sticky top-0 page-menu z-50 ">
-		<div class="border-t-2 border-t-white rounded-full animate-spin w-10 h-10 p-3"></div>
+	<nav class="sticky top-0 page-menu z-50 !text-white">
+		<CoreLoad class="text-white"/>
 	</nav>
 </template>
 

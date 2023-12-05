@@ -22,7 +22,7 @@ watch(() => histories.value, () =>{
             <li class="preview" v-for="history of histories" v-html="sanitize(history.text)"></li>
             <!-- <li class="preview" v-for="history of histories"> {{ sanitize(history.text) }} </li> -->
         </ul>
-        <div v-else class="w-12 h-12 border-t-2 border-t-emerald-700 animate-spin rounded-full"></div>
+        <CoreLoad v-else></CoreLoad>
     </section>
 
 </template>
