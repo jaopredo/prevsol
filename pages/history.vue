@@ -7,17 +7,24 @@ function sanitize(value) {  // Função pra mudar o preview
 }
 
 const histories = inject('history')
+const showHistories = ref(histories.value.length>0?true:false)
+
+watch(() => histories.value, () =>{
+    showHistories.value = true
+})
 
 </script>
 
 <template>
     <section class="flex flex-col items-center justify-center p-5">
         <h1 class="text-emerald-600 font-bold text-4xl">Histórico</h1>
-        <ul class="w-[90%]">
+        <ul class="w-[90%]" v-if="showHistories">
             <li class="preview" v-for="history of histories" v-html="sanitize(history.text)"></li>
             <!-- <li class="preview" v-for="history of histories"> {{ sanitize(history.text) }} </li> -->
         </ul>
+        <div v-else class="w-12 h-12 border-t-2 border-t-emerald-700 animate-spin rounded-full"></div>
     </section>
+
 </template>
 
 <style lang="scss"> 

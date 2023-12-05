@@ -59,11 +59,11 @@ watch(
 
 <template>
     <div class="flex flex-col min-h-[300px] md:h-fit items-stretch rounded-lg w-full md:w-[80%] p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
-        <div v-if="data.data.length>0 || data.loading" class="flex items-center justify-center gap-3 w-full">
+        <div class="flex items-center justify-center gap-3 w-full">
             <input v-model="search" type="search" id="search-publication" class="peer input flex-grow" placeholder="Para procurar, digite aqui">
             <Icon name="ic:baseline-search" size="1.5em" class="peer-focus:text-emerald-700" />
         </div>
-        <div v-if="data.data.length==0 && !data.loading" class="w-full h-full flex-grow flex items-center justify-center text-center font-bold text-emerald-700">
+        <div v-if="data.data.length==0 && !data.loading" class="h-full flex-grow flex items-center justify-center text-center font-bold text-emerald-700">
             <p>NÃO FORAM ENCONTRADOS REGISTROS, VOLTE PARA A PÁGINA ANTERIOR!</p>
         </div>
 
@@ -81,3 +81,12 @@ watch(
         </div>
 </div>
 </template>
+
+<style lang="scss" scoped>
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
+    }
+</style>
