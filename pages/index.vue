@@ -1,17 +1,25 @@
 <script setup>
-    
-    const databoardService = inject('databoardService')
+    const slides = inject('slide')
+    const calendars = inject('calendar')
 
-    databoardService.setRoute('document')
+    const showSlides = ref(slides.value.length>0?true:false)
+    const showCalendars = ref(calendars.value.length>0?true:false)
 
-    const docs = databoardService.getAll(1, 10)
+    watch(() => slides.value, (newSlides) => {
+        showSlides.value = true
+    })
 
-    console.log(docs)
+    watch(() => calendars.value, (newCalendars) => {
+        showCalendars.value = true
+    })
 </script>
 
 <template>
     <div>
-        <h1>Apenas um Teste</h1>
-        <NuxtLink to="/teste">Ir para Teste</NuxtLink>
+        <LayoutPartialsSlide v-if="showSlides"/>
+        <LayoutLoadingSlide v-else />
+
+        <LayoutPartialsCalendar v-if="showCalendars"/>
+        <LayoutLoadingCalendar v-else/>
     </div>
 </template>

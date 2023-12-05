@@ -1,29 +1,26 @@
 
 export default class GenericService {
 
-    #userApiDataSource;
+    #apiDataSource;
 
-	constructor (userApiDataSource) {
-        this.#userApiDataSource = userApiDataSource;
+	constructor (apiDataSource) {
+        this.#apiDataSource = apiDataSource;
 	}
 
-    setRoute(route){
-		this.#userApiDataSource.setRoute(route)
-        return this
-	}
-
-	async getAll(page, pageSize, filters = {}) {
-		return await this.#userApiDataSource.getAll(page, pageSize, filters)
+	async getAll(params) {
+		return await this.#apiDataSource.getAll(params)
 		.catch((e) => {
 			return Promise.reject(e);
 		})
 	}
 
-	setRoute(route){
-		this.#userApiDataSource.setRoute(route)
+    async get(route, id) {
+		return await this.#apiDataSource.get(route, id);
 	}
 
-    async get(id) {
-		return await this.#userApiDataSource.get(id);
+	async post(route, data) {
+		return await this.#apiDataSource.post(route, data).catch((e) => {
+			return Promise.reject(e);
+		})
 	}
 }

@@ -1,43 +1,26 @@
-import { applicationToApi as getAllToApi } from "../mappers/GetAllMapper";
-import { mappers } from '../mappers/unity.js'
-
 
 export default class GenericApiDataSource {
-    #httpClient;
-    #resourceUrl;
-    #mappers
+    #httpClient
 
     constructor (httpClient) {
         this.#httpClient = httpClient;
-        this.#mappers=mappers()
 	}
 
-    // ---| » (SetROUTE)-responsavel por definir o valor da url (resourceUrl)
-    setRoute(route){
-        this.#resourceUrl=route
-    }
-    // ---| » |==============================================================............  
-
-
-
-
-
     // ---| » (GetALL)-responsavel por pegar todos os valores registrados na db da api
-    async getAll(page, pageSize, filters){
+    async getAll({route, page, pageSize, filters={}, foreignKeys}){
         let result,data=[];
         try{
             result=await this.#httpClient.get(
-                this.#resourceUrl,
-                getAllToApi({page, pageSize}, filters)
+                route,
+                {page, limit: pageSize, filters, foreignKeys}
             )
-
             //--| » if (result!==error){runtodown()}
-
-            result.data.forEach(objects => {
-                data.push(this.#mappers.especificMapper(this.#resourceUrl).apiToApplication(objects));
-            });
             
-            return {data, metadata: result.meta};
+            if (!foreignKeys) {
+                return {data: result.data, metadata: result.meta}
+            } else {
+                return data
+            }
         }catch(err){
             return Promise.reject(err);
         }
@@ -45,15 +28,20 @@ export default class GenericApiDataSource {
     }
 
     // ---| » (Get)-responsavel por pegar valores em especifico ou todos na db da api
-    async get(id) {
+    async get(route, id) {
         let result;
         try{
-            result=await this.#httpClient.get(`${this.#resourceUrl}/${id}`)
+            result=await this.#httpClient.get(`${route}/${id}`)
             
             //--| » if (result!==error){runtodown()}        
-            return this.#mappers.especificMapper(this.#resourceUrl).apiToApplication(result.data)
+            return result.data
         }catch(err){
             return Promise.reject(err);
         }
+    }
+
+    // ---| > (Post)
+    async post(route, data) {
+        return await this.#httpClient.post(`${route}`, data).catch(err => Promise.reject(err))
     }
 }
