@@ -39,4 +39,9 @@ export default class GenericApiDataSource {
             return Promise.reject(err);
         }
     }
+
+    // ---| > (Post)
+    async post(route, data) {
+        return await this.#httpClient.post(`${route}`, data).catch(err => Promise.reject(err))
+    }
 }
