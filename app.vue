@@ -11,7 +11,12 @@ const constants = ref({
 })
 
 // Fazendo chamadas da API  e fornecendo aos componentes
-import { makeApiCall } from '~/utils/api'
+import APICONFIG from '~/config/api'
+
+async function makeApiCall(route, service, updater) {
+    const { data } = await service.getAll({route, page: 1, pageSize: APICONFIG.entries[route]})
+    updater(data)
+}
 
 const pub_types = ref([])
 const calendars = ref([])
@@ -19,19 +24,37 @@ const slides = ref([])
 const servers = ref([])
 const histories = ref([])
 
+const loading = ref(true)
+
 provide('slide', slides)
 provide('calendar', calendars)
 provide('publication_type', pub_types)
 provide('server', servers)
 provide('history', histories)
 
-await Promise.all([
-    makeApiCall('slide', DataboardService, data => { slides.value = data }),
-    makeApiCall('calendar', DataboardService, data => { calendars.value = data }),
-    makeApiCall('publication_type', DataboardService, data => { pub_types.value = data }),
-    makeApiCall('server', DataboardService, data => { servers.value = data }),
-    makeApiCall('history', DataboardService, data => { histories.value = data }),
-])
+async function loadAllData() {
+    await Promise.all([
+        makeApiCall('publication_type', DataboardService, data => {
+            pub_types.value = data
+        }),
+        makeApiCall('server', DataboardService, data => {
+            servers.value = data
+        }),
+        
+        makeApiCall('slide', DataboardService, data => {
+            slides.value = data
+        }),
+        makeApiCall('calendar', DataboardService, data => {
+            calendars.value = data
+        }),
+        
+        makeApiCall('history', DataboardService, data => {
+            histories.value = data
+        })
+    ]).then(resp => loading.value = false)
+}
+loadAllData()
+
 
 </script>
 
@@ -42,9 +65,12 @@ await Promise.all([
     </Head>
 
     <LayoutStructureHeader :header-options="constants.headerOptions"/>
-    <LayoutStructureNavbar/>
+
+    <LayoutStructureNavbar v-if="pub_types.length>0 && servers.length>0"/>
+    <LayoutLoadingNavbar v-else />
+
     <main>
         <NuxtPage/>
     </main>
     <LayoutStructureFooter/>
-</template>~/config/header
+</template>

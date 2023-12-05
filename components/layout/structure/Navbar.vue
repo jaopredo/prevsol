@@ -6,7 +6,7 @@
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/scss/queries.scss";
 
 .page-menu {

@@ -31,7 +31,7 @@ function onPageClick(page) {
 
 <style lang="scss" scoped>
     .paginate-item {
-        @apply p-2 transition-all hover:cursor-pointer hover:border-b-2 hover:border-emerald-700 hover:text-emerald-700 hover:font-bold;
+        @apply p-2 transition-all hover:cursor-pointer opacity-80 md:text-sm hover:border-b-2 hover:border-emerald-700 hover:text-emerald-700 hover:font-bold;
     }
 
     .selected {
