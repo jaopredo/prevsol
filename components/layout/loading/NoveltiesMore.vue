@@ -1,5 +1,5 @@
 <template>
-    <div class="loading-last">
+    <div class="loading-last animate-pulse">
         <div class="top-h1"></div>
         <div class="bottom">
             <div class="h1"></div>
@@ -18,9 +18,6 @@
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    animation-name: pisque;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
 
     .top-h1{
         width: 80px;
@@ -40,18 +37,6 @@
             height: 2.4rem;
             background-color: rgb(138, 138, 138);
         }
-    }
-}
-
-@keyframes pisque{
-    0%{
-        opacity: 1;
-    }
-    50%{
-        opacity: .4125;
-    }
-    100%{
-        opacity: 1;
     }
 }
 </style>

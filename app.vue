@@ -38,12 +38,6 @@ provide('link',link)
 
 async function loadAllData() {
     await Promise.all([
-        makeApiCall('papernew',DataboardService,data=> {            
-            papernew.value= data
-        }),
-        makeApiCall('link',DataboardService,data=> {
-            link.value= data
-        }),
         makeApiCall('publication_type', DataboardService, data => {
             pub_types.value = data
         }),
@@ -60,7 +54,13 @@ async function loadAllData() {
         
         makeApiCall('history', DataboardService, data => {
             histories.value = data
-        })
+        }),
+        makeApiCall('papernew',DataboardService,data=> {            
+            papernew.value= data
+        }),
+        makeApiCall('link',DataboardService,data=> {
+            link.value= data
+        }),
     ]).then(resp => loading.value = false)
 }
 loadAllData()
@@ -79,7 +79,7 @@ loadAllData()
     <LayoutStructureNavbar v-if="pub_types.length>0 && servers.length>0"/>
     <LayoutLoadingNavbar v-else />
 
-    <main>
+    <main class="bg-gray-100">
         <NuxtPage/>
     </main>
     <LayoutStructureFooter/>

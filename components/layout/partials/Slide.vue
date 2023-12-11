@@ -90,7 +90,7 @@ function onLeftClick() {
     @apply absolute left-8 bottom-7;
 
     & h1 {
-        @apply md:text-5xl text-[1.5vw] uppercase font-bold tracking-wider;
+        @apply md:text-5xl text-[3vw] uppercase font-bold tracking-wider;
     }
     & p {
         @apply md:text-lg mt-3.5 text-[3.4vw] font-extralight;
@@ -99,11 +99,7 @@ function onLeftClick() {
 
 
 .change-button {
-    @include queries.pc {
-        @apply hover:bg-black/20 active:bg-black/40;
-    }
-
-    @apply text-white flex items-center justify-center absolute rounded-full
+    @apply text-white flex items-center justify-center absolute rounded-full md:hover:bg-black/20 md:active:bg-black/40
 }
 
 .slides-container {

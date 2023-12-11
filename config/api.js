@@ -1,5 +1,5 @@
 const APICONFIG = {
-    url: 'http://localhost:8000/api',
+    url: 'http://192.168.1.200:8000/api',
     entries: {
         slide: 10,
         calendar: 10,

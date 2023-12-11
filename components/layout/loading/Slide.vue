@@ -16,7 +16,6 @@
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/queries";
 
 .text-container-container {
     @apply block bg-black/60 w-full h-full text-white relative;
@@ -25,7 +24,7 @@
     @apply absolute left-8 bottom-7;
 
     & h1 {
-        @apply md:text-5xl text-[5vw] font-bold tracking-wider block bg-gray-500 md:w-96 w-44 md:h-16 h-10 rounded-md;
+        @apply text-5xl font-bold tracking-wider block bg-gray-500 md:w-96 w-44 md:h-16 h-10 rounded-md;
     }
     & p {
         @apply md:text-lg text-[3.4vw] block bg-gray-500 md:w-80 w-32 md:h-12 h-8 rounded-md md:mt-3 mt-1;
@@ -34,11 +33,7 @@
 
 
 .change-button {
-    @include queries.pc {
-        @apply hover:bg-black/20 active:bg-black/40;
-    }
-
-    @apply text-white flex items-center justify-center absolute rounded-full
+    @apply text-white flex items-center justify-center absolute rounded-full md:hover:bg-black/20 md:active:bg-black/40;
 }
 
 .slides-container {

@@ -157,7 +157,7 @@ onMounted(async()=>{
             class="novelties-painel"
         >
 
-            <div class="novelties-painel-last">
+            <div v-if="data.last.length>0" class="novelties-painel-last">
                 <ul class="novelties-painel-last-carrossel" ref="carrosselLast">
                     <li v-for="(noveltie,index) in data.last" :key="index">
                         <div
@@ -204,6 +204,9 @@ onMounted(async()=>{
                         }"></Icon>
                 </div>
             </div>
+            <div v-else>
+                <LayoutLoadingNoveltiesLast/>
+            </div>
 
 
             <div
@@ -211,7 +214,7 @@ onMounted(async()=>{
                 ref="more"
             >
                 <ul ref="carrosselMore" class="novelties-painel-more-carrossel">
-                    <li v-for="(noveltie,index) in data.more" :key="index">
+                    <li v-if="data.more.length>0" v-for="(noveltie,index) in data.more" :key="index">
                         <div
                             :style="{                                    
                                 backgroundImage:`url(${url}/files/${noveltie.image})`,
@@ -236,6 +239,9 @@ onMounted(async()=>{
                             </div>                            
                         </div>
                     </li>
+                    <li v-else v-for="mocker of [1,2,3]">
+                        <LayoutLoadingNoveltiesMore/>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -243,7 +249,7 @@ onMounted(async()=>{
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "@/assets/scss/mixins/compositor";
 
     $painel-width:1100px;
@@ -251,7 +257,6 @@ onMounted(async()=>{
 
 
     .novelties{
-        background-color: rgb(234, 242, 240);
         @include flex(row,center,center);
         width:100%; 
         min-height:$section-height;

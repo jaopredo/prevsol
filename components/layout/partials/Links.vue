@@ -8,7 +8,7 @@ const isLoading=ref(true)
 const data=reactive({
     all:[],
     responsive:{
-        indexMax:1,
+        indexMax:0,
         maxComponents:5,
         limite:1100,
         width:220
@@ -134,8 +134,7 @@ watch(
             <div class="usefulLinks-painel-placehold" ref="placehold">
                 <ul class="usefulLinks-painel-placehold-links" ref="links">
                     <li v-for="(links,index) in data.all" :key="index">
-                        <LayoutLoadingUseLinks v-if="isLoading"/>
-                        <a v-else :href="links.url" target="_blank">
+                        <a :href="links.url" target="_blank">
                             <div
                                 :style="{                                
                                     backgroundImage:`url(${url}/files/${links.image})`,
@@ -162,7 +161,7 @@ watch(
     </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
  @import "@/assets/scss/mixins/compositor";
 
 $painel-width:1100px;
@@ -170,7 +169,6 @@ $section-height:230px;
 
 
 .usefulLinks{
-    background-color: rgb(234, 242, 240);
     @include flex(row,center,center);
     width:100%; 
     //min-height:$section-height;
