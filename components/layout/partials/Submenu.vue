@@ -18,7 +18,7 @@ const { config } = defineProps([
                 (route.path==item.path?' selected':'')
             ">
                 <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
-                <p>{{ item.name }}</p>
+                <p class="uppercase text-xs font-{400}">{{ item.name }}</p>
             </NuxtLink>
 
             <div v-if="item.submenu" class="has-submenu hover:cursor-pointer relative submenu-item">
@@ -34,11 +34,12 @@ const { config } = defineProps([
 @use "@/assets/scss/queries.scss";
 
 .submenu {
+    background-color: rgba(6,95,70,.8125);
     @include queries.pc {
         @apply absolute
         left-0
+        pb-4
         invisible
-        bg-emerald-800
         opacity-0
         flex
         flex-col
@@ -60,6 +61,8 @@ const { config } = defineProps([
         hover:text-emerald-900
         text-white
         justify-start
+        backdrop-blur
+        px-4
 
         w-full
         text-sm

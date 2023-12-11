@@ -27,11 +27,12 @@ function getMonthName(date) {
                         bg-emerald-700
                         flex items-center
                         text-white text-lg font-bold
+                        uppercase                        
                         pl-3
                     ">
                         {{ getMonthName(calendar.date) }} de {{ (new Date(calendar.date)).getFullYear() }}
                     </header>
-                    <h1 class="p-2 font-bold">{{ calendar.name }}</h1>
+                    <h1 class="p-2 font-normal h-full bg-[#aed4cb]">{{ calendar.name }}</h1>
                     <CoreCalendar :date="calendar.date" />
                 </NuxtLink>
             </li>

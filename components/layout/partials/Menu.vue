@@ -60,7 +60,7 @@ function handleMenuCloseButtonClick() {
                     (item.submenu?' has-submenu':'')
                 ">
                     <Icon v-if="item.icon" :name="item.icon" size="1.3em" />
-                    <p>{{ item.name }}</p>
+                    <p class="uppercase tracking-wider">{{ item.name }}</p>
                 </NuxtLink>
                 <LayoutPartialsSubmenu v-if="item.submenu" :config="item.submenu" />
             </li>

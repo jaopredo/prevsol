@@ -23,6 +23,8 @@ const calendars = ref([])
 const slides = ref([])
 const servers = ref([])
 const histories = ref([])
+const papernew=ref([])
+const link=ref([])
 
 const loading = ref(true)
 
@@ -31,9 +33,17 @@ provide('calendar', calendars)
 provide('publication_type', pub_types)
 provide('server', servers)
 provide('history', histories)
+provide('papernew',papernew)
+provide('link',link)
 
 async function loadAllData() {
     await Promise.all([
+        makeApiCall('papernew',DataboardService,data=> {            
+            papernew.value= data
+        }),
+        makeApiCall('link',DataboardService,data=> {
+            link.value= data
+        }),
         makeApiCall('publication_type', DataboardService, data => {
             pub_types.value = data
         }),

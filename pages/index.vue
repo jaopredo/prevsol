@@ -21,5 +21,8 @@
 
         <LayoutPartialsCalendar v-if="showCalendars"/>
         <LayoutLoadingCalendar v-else/>
+
+        <LayoutStructureSectionsNovelties/>
+        <LayoutStructureSectionsUsefulLinks/>
     </div>
 </template>
