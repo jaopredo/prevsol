@@ -14,7 +14,7 @@ const [ pub ] = await Promise.all([
     <section class="p-5 flex flex-col items-center gap-5">
         <h1 class="text-emerald-600 font-bold text-4xl text-center">{{ pub.category }}</h1>
 
-        <div class="flex flex-col min-h-[300px] md:w-[80%] md:h-fit items-stretch rounded-lg w-full p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
+        <div class="bg-white flex flex-col min-h-[300px] md:w-[80%] md:h-fit items-stretch rounded-lg w-full p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
             <div v-if="pub.documents.length==0" class="w-full h-full flex-grow flex items-center justify-center text-center font-bold text-emerald-700">
                 <p>NÃO FORAM ENCONTRADOS REGISTROS, VOLTE PARA A PÁGINA ANTERIOR!</p>
             </div>

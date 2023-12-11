@@ -58,7 +58,7 @@ watch(
 </script>
 
 <template>
-    <div class="flex flex-col min-h-[300px] md:h-fit items-stretch rounded-lg w-full md:w-[80%] p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
+    <div class="bg-white flex flex-col min-h-[300px] md:h-fit items-stretch rounded-lg w-full md:w-[80%] p-3" style="box-shadow:  8px 8px 23px #a8a8a8,-8px -8px 23px #ffffff;">
         <div class="flex items-center justify-center gap-3 w-full">
             <input v-model="search" type="search" id="search-publication" class="peer input flex-grow" placeholder="Para procurar, digite aqui">
             <Icon name="ic:baseline-search" size="1.5em" class="peer-focus:text-emerald-700" />

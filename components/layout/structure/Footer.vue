@@ -1,6 +1,7 @@
 <template>
-    <footer class="bg-[url(prevsol-map-changed.png)] bg-no-repeat bg-cover bg-center relative text-white">
-        <div class="flex items-center justify-around pr-4 pl-4 pb-32 pt-7 z-10">
+    <footer class="bg-[url('/prevsol-map-changed.png')] bg-no-repeat bg-cover bg-center relative text-white">
+        <div class="h-5 w-full absolute top-0 left-0 bg-emerald-900"></div>
+        <div class="flex items-center justify-around pr-4 pl-4 pb-32 pt-10 z-10">
             <img class="w-auto h-44" src="/prevsol-2-logo.png">
             <div class="bg-gray-100 text-emerald-900 p-3 rounded-md flex flex-col items-center justify-center gap-5">
                 <div class="flex justify-center flex-col w-full">
