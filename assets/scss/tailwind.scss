@@ -1,0 +1,74 @@
+@import "./font.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.4s;
+}
+.page-enter-from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+
+*, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu';
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+    outline: none !important;
+}
+
+
+body {
+    @apply overflow-x-hidden;
+    min-height: 100vh
+}
+
+/* INPUT */
+.input {
+    @apply p-2 border focus:ring-emerald-500 focus:ring-2 ring-offset-1 border-gray-400 rounded-md focus:border-emerald-500 transition-all;
+}
+
+/* BOTÕES */
+button {
+    @apply md:active:scale-100 md:transition-none transition-all active:scale-90
+}
+
+.button {
+    @extend button;
+    @apply flex items-center justify-center w-fit gap-1 p-1 rounded-sm transition-all;
+}
+
+.emerald-button {
+    @extend .button;
+    @apply bg-emerald-700 hover:bg-emerald-800 text-white active:bg-emerald-900;
+}
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-700;
+}

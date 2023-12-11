@@ -1,28 +1,24 @@
-import colors from 'tailwindcss/colors'
+// import colors from 'tailwindcss/colors'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    modules: ['@nuxtjs/tailwindcss', 'nuxt-icon'],
+
+    devServer: {
+        host: '192.168.1.200'
+    },
+
     devtools: { enabled: true },
-    modules: [
-        '@nuxtjs/tailwindcss'
-    ],
     app: {
         pageTransition: { name: 'page', mode: 'out-in' }
     },
 
-
     tailwindcss: {
-        config: {
-            theme: {
-                extend: {
-                    colors: {
-                        ...colors,
-                        leaf: {
-                            DEFAULT: '#4290f5'
-                        }
-                    }
-                }
-            }
-        }
+        cssPath: '~/assets/scss/tailwind.scss'
+    },
+
+    alias: {
+        "@/*": "/*"
     }
 })
+// cssPath: '~/assets/css/tailwind.scss',
